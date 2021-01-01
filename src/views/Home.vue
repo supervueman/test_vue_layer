@@ -1,10 +1,20 @@
 <template>
   <div>
     <vl-map
+      ref="map"
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
       data-projection="EPSG:4326"
       style="height: 400px"
+      :controls="true"
+      @click="onClick"
+      @dblclick="onDblClick"
+      @singleclick="onSingleclick"
+      @pointerdrag="onPointerdrag"
+      @pointermove="onPointermove"
+      @movestart="onMoveStart"
+      @moveend="onMoveEnd"
+      @postrender="onPostrender"
     >
       <vl-view
         :zoom.sync="zoom"
@@ -53,5 +63,34 @@ export default {
     rotation: 0,
     geolocPosition: undefined,
   }),
+
+  methods: {
+    onClick($event) {
+      console.log(this.$refs);
+      this.$refs.map.focus();
+      console.log('onClick', $event);
+    },
+    onDblClick($event) {
+      console.log('onDblClick', $event);
+    },
+    onSingleclick($event) {
+      console.log('onSingleclick', $event);
+    },
+    onPointerdrag($event) {
+      console.log('onPointerdrag', $event);
+    },
+    onPointermove() {
+      // console.log('onPointermove', $event);
+    },
+    onMoveStart($event) {
+      console.log('onMoveStart', $event);
+    },
+    onMoveEnd($event) {
+      console.log('onMoveEnd', $event);
+    },
+    onPostrender() {
+      // console.log('onPostrender', $event);
+    },
+  },
 };
 </script>
