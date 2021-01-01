@@ -1,10 +1,26 @@
 <template>
   <div id="app">
+    <app-toolbar />
     <router-view/>
   </div>
 </template>
 
+<script>
+import AppToolbar from '@/components/common/AppToolbar.vue';
+
+export default {
+  name: 'App',
+
+  components: {
+    AppToolbar,
+  },
+};
+</script>
+
 <style lang="scss" scoped>
+#app {
+  padding-top: 40px;
+}
 </style>
 
 <style lang="scss">
