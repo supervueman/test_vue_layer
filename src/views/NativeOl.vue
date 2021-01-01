@@ -17,18 +17,22 @@ import Polygon from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import Vector from 'ol/source/Vector';
+import { transform } from 'ol/proj';
 
 export default {
   mounted() {
     const featurePoint = new Feature({
-      geometry: new Point([-2e6, -1e6]),
+      geometry: new Point(transform([16.9278, 52.4044], 'EPSG:4326', 'EPSG:3857')),
       name: 'My Point',
     });
 
     console.log('Feature', featurePoint);
 
+    const coordinates = [[-10, -10], [-20, -20], [-30, -10], [-20, 0], [-10, -10]].map((el) => transform(el, 'EPSG:4326', 'EPSG:3857'));
+    console.log('Coordinates', coordinates);
+
     const featurePoligon = new Feature({
-      geometry: new Polygon([[[-2e6, -1e6], [-1e6, 1e6], [0, -1e6], [-2e6, -1e6]]]),
+      geometry: new Polygon([coordinates]),
       name: 'My Polygon',
     });
 
