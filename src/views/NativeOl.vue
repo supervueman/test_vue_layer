@@ -9,21 +9,22 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 export default {
-  name: 'Native',
-
   mounted() {
-    var map = new Map({
+    console.log('hi');
+    const map = new Map({
       view: new View({
         center: [0, 0],
-        zoom: 1
+        zoom: 1,
       }),
       layers: [
         new TileLayer({
-          source: new OSM()
-        })
+          source: new OSM(),
+        }),
       ],
-      target: 'map'
+      target: 'map',
     });
+
+    console.log(map);
   },
 };
 </script>
