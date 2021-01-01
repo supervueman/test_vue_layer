@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map__control" />
-    <div id="map" class="map__item" />
+    <div id="map_ol" class="map__item" />
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
           source: new OSM(),
         }),
       ],
-      target: 'map',
+      target: 'map_ol',
     });
 
     const controlElement = document.querySelector('.map__control');

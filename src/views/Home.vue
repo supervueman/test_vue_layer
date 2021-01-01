@@ -22,6 +22,10 @@
         :rotation.sync="rotation"
       />
 
+      <vl-feature id="point" :properties="{prop: 'value', prop2: 'value'}">
+        <vl-geom-point :coordinates="[0, 0]"></vl-geom-point>
+      </vl-feature>
+
       <vl-geoloc @update:position="geolocPosition = $event">
         <template slot-scope="geoloc">
           <vl-feature
@@ -67,7 +71,12 @@ export default {
   methods: {
     onClick($event) {
       console.log(this.$refs);
-      this.$refs.map.focus();
+
+      $event.map.forEachFeatureAtPixel($event.pixel, (feature, layer) => {
+        console.log('hi');
+        console.log(feature, layer);
+      });
+
       console.log('onClick', $event);
     },
     onDblClick($event) {
