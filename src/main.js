@@ -1,13 +1,14 @@
 import Vue from 'vue';
+import VueLayers from 'vuelayers';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import VueLayers from 'vuelayers'
-import 'vuelayers/lib/style.css' // needs css-loader
+
+import 'vuelayers/lib/style.css'; // needs css-loader
 
 Vue.config.productionTip = false;
 
-Vue.use(VueLayers)
+Vue.use(VueLayers);
 
 new Vue({
   router,
