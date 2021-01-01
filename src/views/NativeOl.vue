@@ -13,36 +13,36 @@ import OSM from 'ol/source/OSM';
 import Control from 'ol/control/Control';
 import Event from 'ol/events/Event';
 import Feature from 'ol/Feature';
-// import Polygon from 'ol/geom/Polygon';
+import Polygon from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import Vector from 'ol/source/Vector';
 
 export default {
   mounted() {
-    const feature = new Feature({
-      geometry: new Point([4.35247, 50.84673]),
+    const featurePoint = new Feature({
+      geometry: new Point([-2e6, -1e6]),
       name: 'My Point',
     });
 
-    console.log(feature);
+    console.log('Feature', featurePoint);
 
-    // get the polygon geometry
-    const poly = feature.getGeometry();
-
-    console.log(poly);
-
-    const geomsSource = new Vector({
-      features: [feature],
+    const featurePoligon = new Feature({
+      geometry: new Polygon([[[-2e6, -1e6], [-1e6, 1e6], [0, -1e6], [-2e6, -1e6]]]),
+      name: 'My Polygon',
     });
 
-    console.log(geomsSource);
+    const geomsSource = new Vector({
+      features: [featurePoint, featurePoligon],
+    });
+
+    console.log('GeomsSource', geomsSource);
 
     const geomsVector = new VectorLayer({
       source: geomsSource,
     });
 
-    console.log(geomsVector);
+    console.log('GeomsVector', geomsVector);
 
     const map = new Map({
       view: new View({
@@ -78,9 +78,9 @@ export default {
       console.log(event);
     });
 
-    console.log(map);
+    console.log('Map', map);
 
-    console.log(myControl);
+    console.log('MayControl', myControl);
   },
 };
 </script>

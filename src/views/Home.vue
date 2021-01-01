@@ -23,7 +23,13 @@
       />
 
       <vl-feature id="point" :properties="{prop: 'value', prop2: 'value'}">
-        <vl-geom-point :coordinates="[0, 0]"></vl-geom-point>
+        <vl-geom-point :coordinates="[16.9071388, 52.4901917]" />
+      </vl-feature>
+
+      <vl-feature id="polygon" :properties="{prop: 'value', prop2: 'value'}">
+        <vl-geom-polygon
+          :coordinates="[[[-10, -10], [-20, -20], [-30, -10], [-20, 0], [-10, -10]]]"
+        />
       </vl-feature>
 
       <vl-geoloc @update:position="geolocPosition = $event">
