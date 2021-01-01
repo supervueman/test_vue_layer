@@ -10,6 +10,11 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/native',
+    name: 'Native',
+    componnt: import('@/views/Native.vue'),
+  },
 ];
 
 const router = new VueRouter({
