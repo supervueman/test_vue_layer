@@ -1,5 +1,8 @@
 <template>
-  <div id="map"></div>
+  <div class="map">
+    <div class="map__control" />
+    <div id="map" class="map__item" />
+  </div>
 </template>
 
 <script>
@@ -7,6 +10,8 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
+import Control from 'ol/control/Control';
+import Event from 'ol/events/Event';
 
 export default {
   mounted() {
@@ -23,13 +28,49 @@ export default {
       target: 'map',
     });
 
+    const controlElement = document.querySelector('.map__control');
+
+    const myControl = new Control({
+      element: controlElement,
+    });
+
+    const myEvent = new Event('click', {
+      target: map,
+    });
+
+    controlElement.addEventListener('click', () => {
+      map.dispatchEvent(myEvent);
+    });
+
+    map.addControl(myControl);
+
+    map.on('click', (event) => {
+      console.log(event);
+    });
+
     console.log(map);
+
+    console.log(myControl);
+
+    console.log(new Event('click'));
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#map {
-  height: 400px;
+.map {
+  &__item {
+    height: 400px;
+  }
+
+  &__control {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
 }
 </style>
