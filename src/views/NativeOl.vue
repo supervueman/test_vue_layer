@@ -12,9 +12,38 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import Control from 'ol/control/Control';
 import Event from 'ol/events/Event';
+import Feature from 'ol/Feature';
+// import Polygon from 'ol/geom/Polygon';
+import Point from 'ol/geom/Point';
+import VectorLayer from 'ol/layer/Vector';
+import Vector from 'ol/source/Vector';
 
 export default {
   mounted() {
+    const feature = new Feature({
+      geometry: new Point([4.35247, 50.84673]),
+      name: 'My Point',
+    });
+
+    console.log(feature);
+
+    // get the polygon geometry
+    const poly = feature.getGeometry();
+
+    console.log(poly);
+
+    const geomsSource = new Vector({
+      features: [feature],
+    });
+
+    console.log(geomsSource);
+
+    const geomsVector = new VectorLayer({
+      source: geomsSource,
+    });
+
+    console.log(geomsVector);
+
     const map = new Map({
       view: new View({
         center: [0, 0],
@@ -24,6 +53,7 @@ export default {
         new TileLayer({
           source: new OSM(),
         }),
+        geomsVector,
       ],
       target: 'map_ol',
     });
@@ -51,8 +81,6 @@ export default {
     console.log(map);
 
     console.log(myControl);
-
-    console.log(new Event('click'));
   },
 };
 </script>
