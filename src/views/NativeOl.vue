@@ -19,6 +19,7 @@ import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import Vector from 'ol/source/Vector';
 import Overlay from 'ol/Overlay';
+import GeoJSON from 'ol/format/GeoJSON';
 
 export default {
   mounted() {
@@ -57,6 +58,12 @@ export default {
           source: new OSM(),
         }),
         geomsVector,
+        new VectorLayer({
+          source: new Vector({
+            url: '/countries.geojson',
+            format: new GeoJSON(),
+          }),
+        }),
       ],
       target: 'map_ol',
       overlays: [
