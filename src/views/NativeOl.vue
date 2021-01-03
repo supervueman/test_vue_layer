@@ -20,6 +20,8 @@ import VectorLayer from 'ol/layer/Vector';
 import Vector from 'ol/source/Vector';
 import Overlay from 'ol/Overlay';
 import GeoJSON from 'ol/format/GeoJSON';
+import Select from 'ol/interaction/Select';
+import { click } from 'ol/events/condition';
 
 export default {
   mounted() {
@@ -98,6 +100,12 @@ export default {
     console.log('Map', map);
 
     console.log('MayControl', myControl);
+
+    const select = new Select({
+      condition: click,
+    });
+
+    map.addInteraction(select);
   },
 };
 </script>
