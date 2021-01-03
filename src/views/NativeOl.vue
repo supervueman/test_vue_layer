@@ -113,7 +113,7 @@ export default {
 <style lang="scss" scoped>
 .map {
   &__item {
-    height: 400px;
+    height: 500px;
   }
 
   &__control {
