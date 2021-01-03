@@ -1,6 +1,7 @@
 <template>
   <div class="map">
     <div class="map__control" />
+    <div class="map__overlay">Overlay</div>
     <div id="map_ol" class="map__item" />
   </div>
 </template>
@@ -17,6 +18,7 @@ import Polygon from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import Vector from 'ol/source/Vector';
+import Overlay from 'ol/Overlay';
 
 export default {
   mounted() {
@@ -57,6 +59,13 @@ export default {
         geomsVector,
       ],
       target: 'map_ol',
+      overlays: [
+        new Overlay({
+          id: 'overlay__1',
+          element: document.querySelector('.map__overlay'),
+          position: [30, 30],
+        }),
+      ],
     });
 
     const controlElement = document.querySelector('.map__control');
@@ -100,6 +109,11 @@ export default {
     right: 0;
     top: 0;
     cursor: pointer;
+  }
+
+  &__overlay {
+    background-color: #fff;
+    padding: 10px;
   }
 }
 </style>

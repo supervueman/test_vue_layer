@@ -54,6 +54,18 @@
       <vl-layer-tile id="osm">
         <vl-source-osm />
       </vl-layer-tile>
+
+      <vl-overlay
+        id="overlay"
+        :position="overlayCoordinate"
+      >
+        <template slot-scope="scope">
+          <div class="overlay-content">
+            Hello world!<br>
+            Position: {{ scope.position }}
+          </div>
+        </template>
+      </vl-overlay>
     </vl-map>
 
     <div style="padding: 20px">
@@ -72,6 +84,7 @@ export default {
     center: [0, 0],
     rotation: 0,
     geolocPosition: undefined,
+    overlayCoordinate: [30, 30],
   }),
 
   methods: {
@@ -109,3 +122,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.overlay-content {
+  background-color: #fff;
+}
+</style>
